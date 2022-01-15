@@ -1,3 +1,2 @@
 *.img
-.env
-user-data.yml
+metadata.yaml
