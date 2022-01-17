@@ -1,6 +1,8 @@
 #!/bin/bash
 
-curl -LO https://plug-mirror.rcac.purdue.edu/mint-images/stable/20.3/linuxmint-20.3-cinnamon-64bit.iso
+#curl -LO https://plug-mirror.rcac.purdue.edu/mint-images/stable/20.3/linuxmint-20.3-cinnamon-64bit.iso
+
+qemu-img create -f qcow2 vdisk1 5G
 
 qemu-system-x86_64 \
 	-machine accel=kvm,type=q35 \
@@ -9,4 +11,5 @@ qemu-system-x86_64 \
 	-device virtio-net-pci,netdev=net0 \
 	-netdev user,id=net0,hostfwd=tcp::2222-:22 \
 	-cdrom linuxmint-20.3-cinnamon-64bit.iso \
+	-drive if=virtio,format=qcow2,file=vdisk1 
 
