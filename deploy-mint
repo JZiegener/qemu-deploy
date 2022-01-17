@@ -1,0 +1,9 @@
+
+qemu-system-x86_64 \
+	-machine accel=kvm,type=q35 \
+	-cpu host \
+	-m 2G \
+	-device virtio-net-pci,netdev=net0 \
+	-netdev user,id=net0,hostfwd=tcp::2222-:22 \
+	-cdrom linuxmint-20.3-cinnamon-64bit.iso \
+
